@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 250 50% 8%;
+    --foreground: 280 20% 95%;
+
+    --card: 250 40% 12%;
+    --card-foreground: 280 20% 95%;
+
+    --popover: 250 45% 10%;
+    --popover-foreground: 280 20% 95%;
+
+    --primary: 280 70% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 60% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 20% 20%;
+    --muted-foreground: 240 10% 70%;
+    --accent: 320 80% 65%;
+    --accent-foreground: 0 0% 0%;
+    --success: 150 70% 50%;
+    --success-foreground: 0 0% 100%;
+    --warning: 40 90% 60%;
+    --warning-foreground: 0 0% 10%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 30% 30%;
+    --input: 240 30% 25%;
+    --ring: 280 70% 60%;
+    --chart-1: 280 70% 60%;
+    --chart-2: 240 60% 50%;
+    --chart-3: 320 80% 65%;
+    --chart-4: 200 70% 55%;
+    --chart-5: 340 75% 60%;
+
+    --radius: 1rem;
+    
+    --mystic-purple: 270 70% 60%;
+    --mystic-purple-dark: 260 65% 45%;
+    --mystic-blue: 240 80% 55%;
+    --mystic-gold: 45 100% 65%;
+    --galaxy-start: 250 50% 8%;
+    --galaxy-mid: 260 60% 25%;
+    --galaxy-end: 270 70% 40%;
+    
+    --gradient-galaxy: linear-gradient(135deg, hsl(var(--galaxy-start)) 0%, hsl(var(--galaxy-mid)) 50%, hsl(var(--galaxy-end)) 100%);
+    --gradient-mystic: linear-gradient(to right, hsl(var(--mystic-purple)) 0%, hsl(var(--mystic-blue)) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(var(--mystic-gold)) 0%, hsl(45 90% 55%) 100%);
+    
+    --shadow-mystic: 0 10px 40px -10px hsl(var(--mystic-purple) / 0.5);
+    --shadow-glow: 0 0 30px hsl(var(--mystic-purple) / 0.3);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 250 50% 8%;
+    --foreground: 280 20% 95%;
+
+    --card: 250 40% 12%;
+    --card-foreground: 280 20% 95%;
+
+    --popover: 250 45% 10%;
+    --popover-foreground: 280 20% 95%;
+
+    --primary: 280 70% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 60% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 20% 20%;
+    --muted-foreground: 240 10% 70%;
+
+    --accent: 320 80% 65%;
+    --accent-foreground: 0 0% 0%;
+
+    --success: 150 70% 50%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 40 90% 60%;
+    --warning-foreground: 0 0% 10%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 30% 30%;
+    --input: 240 30% 25%;
+    --ring: 280 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .mystic-glow {
+    box-shadow: var(--shadow-mystic);
+  }
+  
+  .mystic-glow-hover {
+    transition: var(--transition-smooth);
+  }
+  
+  .mystic-glow-hover:hover {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .gradient-galaxy {
+    background: var(--gradient-galaxy);
+  }
+  
+  .gradient-mystic {
+    background: var(--gradient-mystic);
+  }
+  
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 3s linear infinite;
+    background: linear-gradient(to right, transparent 0%, hsl(var(--mystic-gold) / 0.3) 50%, transparent 100%);
+    background-size: 1000px 100%;
+  }
+}
