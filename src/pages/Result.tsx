@@ -26,12 +26,9 @@ export default function Result() {
   const [emailError, setEmailError] = useState("");
   const [isConfirming, setIsConfirming] = useState(false);
   const [paymentInfo, setPaymentInfo] = useState<{ formDataId?: string; email?: string } | null>(null);
-<<<<<<< HEAD
   const [showEmailVerification, setShowEmailVerification] = useState(false);
   const [verificationEmail, setVerificationEmail] = useState("");
   const [isVerifyingEmail, setIsVerifyingEmail] = useState(false);
-=======
->>>>>>> 5f0095f5d0874a7585e34d3f8a8d5ef47bf900fa
 
   const sessionId = searchParams.get("session_id");
 
