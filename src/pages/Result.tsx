@@ -147,20 +147,9 @@ export default function Result() {
         return;
       }
 
-<<<<<<< HEAD
       // Se não tem nem session_id nem formDataId, mostrar tela de verificação por email
       setIsVerifying(false);
       setShowEmailVerification(true);
-=======
-      // Se não tem nem session_id nem formDataId, redirecionar para pagamento
-      toast({
-        title: "Acesso restrito",
-        description: "Você precisa completar o pagamento para acessar o resultado.",
-        variant: "destructive",
-      });
-      navigate("/pagamento");
-      setIsVerifying(false);
->>>>>>> 5f0095f5d0874a7585e34d3f8a8d5ef47bf900fa
     };
 
     verifyAccess();
@@ -264,8 +253,6 @@ export default function Result() {
     }
   };
 
-=======
->>>>>>> 5f0095f5d0874a7585e34d3f8a8d5ef47bf900fa
   const handleConfirmation = async () => {
     if (!confirmationEmail.trim()) {
       setEmailError("Por favor, informe seu email");
@@ -583,8 +570,6 @@ Descubra o que o universo reserva para você através de quiromancia, superstiç
     );
   }
 
-=======
->>>>>>> 5f0095f5d0874a7585e34d3f8a8d5ef47bf900fa
   // Mostrar tela de confirmação/login
   if (showConfirmation) {
     return (
@@ -889,16 +874,6 @@ Descubra o que o universo reserva para você através de quiromancia, superstiç
                 Gerar Novo
               </Button>
             </div>
-=======
-            <Button
-              onClick={handleDownload}
-              className="w-full gradient-mystic mystic-glow-hover font-semibold"
-              size="lg"
-            >
-              <Download className="w-5 h-5 mr-2" />
-              Baixar PDF
-            </Button>
->>>>>>> 5f0095f5d0874a7585e34d3f8a8d5ef47bf900fa
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <Button
