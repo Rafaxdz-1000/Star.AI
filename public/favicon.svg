@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Background -->
+  <rect width="64" height="64" fill="#000000"/>
+  
+  <!-- Star trails - three parallel curved lines, progressively thinner -->
+  <path d="M 18 12 Q 32 22, 48 32" stroke="#9333ea" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 18 12 Q 32 24, 48 36" stroke="#9333ea" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 18 12 Q 32 26, 48 40" stroke="#9333ea" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Main large five-pointed star (upper-left) -->
+  <path d="M 18 12 L 19.5 16 L 23.5 16 L 20.5 18.5 L 22 22.5 L 18 20 L 14 22.5 L 15.5 18.5 L 12.5 16 L 16.5 16 Z" fill="#9333ea"/>
+  
+  <!-- Secondary smaller five-pointed star (middle of curve) -->
+  <path d="M 32 22 L 33 24.5 L 35.5 24.5 L 34 26.5 L 35 29 L 32 27.5 L 29 29 L 30 26.5 L 28.5 24.5 L 31 24.5 Z" fill="#9333ea"/>
+  
+  <!-- Small four-pointed sparkle stars (bottom-right) -->
+  <path d="M 46 32 L 46.5 33.5 L 48 33.5 L 46.5 34.5 L 47 36 L 46 35 L 45 36 L 45.5 34.5 L 44 33.5 L 45.5 33.5 Z" fill="#9333ea"/>
+  <path d="M 48 40 L 48.5 41.5 L 50 41.5 L 48.5 42.5 L 49 44 L 48 43 L 47 44 L 47.5 42.5 L 46 41.5 L 47.5 41.5 Z" fill="#9333ea"/>
+</svg>
+
