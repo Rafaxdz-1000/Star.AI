@@ -476,7 +476,6 @@ Descubra o que o universo reserva para você através de quiromancia, superstiç
     );
   }
 
-<<<<<<< HEAD
   // Mostrar tela de verificação por email (quando não tem session_id nem formDataId)
   if (showEmailVerification) {
     return (
@@ -854,7 +853,6 @@ Descubra o que o universo reserva para você através de quiromancia, superstiç
 
           {/* Action Buttons */}
           <div className="space-y-4 animate-fade-in">
-<<<<<<< HEAD
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Button
                 onClick={handleDownload}
