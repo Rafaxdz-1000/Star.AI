@@ -160,7 +160,6 @@ export default function Result() {
     return emailRegex.test(email);
   };
 
-<<<<<<< HEAD
   const handleEmailVerification = async () => {
     if (!verificationEmail.trim()) {
       setEmailError("Por favor, informe seu email");
