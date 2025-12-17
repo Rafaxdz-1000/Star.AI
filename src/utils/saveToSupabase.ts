@@ -31,8 +31,8 @@ function mapFormDataToDatabase(formData: Partial<FormData>, email: string) {
     studying: formData.estudando || false,
     study_level: formData.nivelEstudo || null,
     marital_status: maritalStatusMap[formData.situacaoCivil || ""] || "single",
-    has_children: formData.filhos || false,
-    children_quantity: formData.quantidadeFilhos || null,
+    has_children: formData.filhos || false, // Campo removido do formulário, mantido para compatibilidade
+    children_quantity: formData.quantidadeFilhos || null, // Campo removido do formulário, mantido para compatibilidade
     state: "", // Campo removido do formulário, mantido para compatibilidade
     city: "", // Campo removido do formulário, mantido para compatibilidade
     neighborhood: null, // Campo removido do formulário, mantido para compatibilidade

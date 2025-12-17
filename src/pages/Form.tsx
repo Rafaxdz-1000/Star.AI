@@ -4,9 +4,6 @@ import { FormData } from "@/types/form";
 import { Progress } from "@/components/ui/progress";
 import Step0HandPhoto from "@/components/FormSteps/Step0HandPhoto";
 import Step1Personal from "@/components/FormSteps/Step1Personal";
-import Step2Education from "@/components/FormSteps/Step2Education";
-import Step3Family from "@/components/FormSteps/Step3Family";
-import Step4Goals from "@/components/FormSteps/Step5Goals";
 import { Moon, Sparkles } from "lucide-react";
 
 export default function Form() {
@@ -14,7 +11,7 @@ export default function Form() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<Partial<FormData>>({});
 
-  const totalSteps = 5;
+  const totalSteps = 2;
   const progress = (currentStep / totalSteps) * 100;
 
   const updateFormData = (data: Partial<FormData>) => {
@@ -49,12 +46,6 @@ export default function Form() {
         return <Step0HandPhoto {...stepProps} />;
       case 2:
         return <Step1Personal {...stepProps} />;
-      case 3:
-        return <Step2Education {...stepProps} />;
-      case 4:
-        return <Step3Family {...stepProps} />;
-      case 5:
-        return <Step4Goals {...stepProps} />;
       default:
         return null;
     }

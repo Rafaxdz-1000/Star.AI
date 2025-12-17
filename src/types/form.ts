@@ -5,7 +5,7 @@ export interface FormData {
   estudando: boolean;
   nivelEstudo?: string;
   situacaoCivil: string;
-  filhos: boolean;
+  filhos?: boolean;
   quantidadeFilhos?: number;
   estado?: string;
   cidade?: string;

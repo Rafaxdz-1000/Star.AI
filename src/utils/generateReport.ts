@@ -93,9 +93,9 @@ export function generateReport(data: FormData): Report {
     return todas.join(", ").toLowerCase();
   };
 
-  const objetivoTexto = formatarResposta(objetivoPrincipal, objetivoPrincipalOutro);
-  const areaTexto = formatarResposta(areaMelhorar, areaMelhorarOutro);
-  const desafioTexto = formatarResposta(desafioAtual, desafioAtualOutro);
+  const objetivoTexto = objetivoPrincipal && objetivoPrincipal.length > 0 ? formatarResposta(objetivoPrincipal, objetivoPrincipalOutro) : "crescimento pessoal e profissional";
+  const areaTexto = areaMelhorar && areaMelhorar.length > 0 ? formatarResposta(areaMelhorar, areaMelhorarOutro) : "desenvolvimento pessoal";
+  const desafioTexto = desafioAtual && desafioAtual.length > 0 ? formatarResposta(desafioAtual, desafioAtualOutro) : "crescimento e transformação";
 
   const idadeCategoria = idade < 25 ? "jovem" : idade < 35 ? "adulto jovem" : idade < 50 ? "meia-idade" : "madura";
   const localizacao = cidade && estado ? (bairro ? `${bairro}, ${cidade}/${estado}` : `${cidade}/${estado}`) : "sua localização";
@@ -109,7 +109,7 @@ export function generateReport(data: FormData): Report {
 
 Sua atuação como ${profissao.toLowerCase()} está refletida na linha do destino de sua mão - ela mostra ${estudando ? "uma mente em constante expansão, característica visível no desenvolvimento progressivo da linha da cabeça" : "a maturidade profissional alcançada, evidente na firmeza e profundidade das linhas principais"}.
 
-As linhas do coração revelam que você está em um momento de ${situacaoCivil === "casada" || situacaoCivil === "relacionamento" ? "aprofundamento nas relações existentes, com marcações que indicam maior intimidade e compromisso" : "abertura para novos encontros transformadores, com ramificações que sugerem múltiplas possibilidades afetivas"}. ${filhos ? "A maternidade deixou marcas visíveis nas linhas secundárias, mostrando força, sacrifício e amor incondicional." : "As linhas da fertilidade sugerem potencial criativo intenso, seja para gerar vida ou manifestar projetos transformadores."}
+As linhas do coração revelam que você está em um momento de ${situacaoCivil && (situacaoCivil === "casada" || situacaoCivil === "relacionamento") ? "aprofundamento nas relações existentes, com marcações que indicam maior intimidade e compromisso" : "abertura para novos encontros transformadores, com ramificações que sugerem múltiplas possibilidades afetivas"}. ${filhos ? "A maternidade deixou marcas visíveis nas linhas secundárias, mostrando força, sacrifício e amor incondicional." : "As linhas da fertilidade sugerem potencial criativo intenso, seja para gerar vida ou manifestar projetos transformadores."}
 
 Seus objetivos relacionados a ${objetivoTexto} estão mapeados no monte de Júpiter de sua mão - há uma energia de ambição direcionada que se alinha perfeitamente com seus propósitos declarados. A área que você busca melhorar, ${areaTexto}, aparece como interrupções sutis na linha da vida, indicando que transformações profundas são necessárias e possíveis neste aspecto.
 
@@ -128,7 +128,7 @@ Os desafios atuais relacionados a ${desafioTexto} estão refletidos nas linhas d
       provaveis: [
         `Evolução na área de ${areaTexto}: as linhas da sua mão indicam movimento significativo nesta área entre fevereiro e maio de 2026`,
         `Quanto aos seus objetivos relacionados a ${objetivoTexto}, os primeiros sinais concretos de manifestação aparecerão no primeiro trimestre, ganhando força no segundo semestre`,
-        `${situacaoCivil === "solteira" ? "Conhecimento de pessoa significativa em contexto inesperado, possivelmente relacionado a " + areaTexto : "Fortalecimento do relacionamento atual através de uma renovação de compromisso ou decisão importante tomada em conjunto"}`,
+        `${situacaoCivil === "solteira" ? "Conhecimento de pessoa significativa em contexto inesperado, possivelmente relacionado a " + areaTexto : situacaoCivil ? "Fortalecimento do relacionamento atual através de uma renovação de compromisso ou decisão importante tomada em conjunto" : "Abertura para conexões significativas que podem transformar sua perspectiva sobre relacionamentos"}`,
         `Superação gradual relacionada a ${desafioTexto} através de ajuda inesperada de alguém próximo${cidade ? ` em ${cidade}` : ""}`,
         `${estudando ? "Conclusão de etapa importante nos estudos com reconhecimento público ou acadêmico" : "Proposta profissional que valoriza sua experiência e pode significar aumento de até 30% em ganhos"}`
       ],
@@ -145,7 +145,7 @@ Os desafios atuais relacionados a ${desafioTexto} estão refletidos nas linhas d
       ousados: [
         `Mudança radical de vida: relocação para outro estado ou país, seguindo intuição profunda relacionada a seus objetivos`,
         `Manifestação de abundância financeira inesperada (herança, prêmio, ou oportunidade única) - os números ${numerosMegaSena.join(", ")} têm energia especial para você na Mega-Sena`,
-        `${situacaoCivil === "solteira" ? "Encontro com amor transformador que muda completamente sua perspectiva sobre relacionamentos e futuro" : "Decisão audaciosa no relacionamento que solidifica ou transforma completamente a dinâmica atual"}`,
+        `${situacaoCivil === "solteira" ? "Encontro com amor transformador que muda completamente sua perspectiva sobre relacionamentos e futuro" : situacaoCivil ? "Decisão audaciosa no relacionamento que solidifica ou transforma completamente a dinâmica atual" : "Descoberta de novas formas de conexão e relacionamento que expandem sua visão de mundo"}`,
         `Transformação completa na carreira: sua atuação como ${profissao.toLowerCase()} pode evoluir para algo revolucionário e inovador`,
         `Desenvolvimento de dons intuitivos ou espirituais que se transformam em propósito de vida ou fonte de renda complementar`
       ]
