@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FormData } from "@/types/form";
 import { Progress } from "@/components/ui/progress";
+import Step0HandPhoto from "@/components/FormSteps/Step0HandPhoto";
 import Step1Personal from "@/components/FormSteps/Step1Personal";
 import Step2Education from "@/components/FormSteps/Step2Education";
 import Step3Family from "@/components/FormSteps/Step3Family";
-import Step4Location from "@/components/FormSteps/Step4Location";
-import Step5Goals from "@/components/FormSteps/Step5Goals";
+import Step4Goals from "@/components/FormSteps/Step5Goals";
 import { Moon, Sparkles } from "lucide-react";
 
 export default function Form() {
@@ -46,15 +46,15 @@ export default function Form() {
 
     switch (currentStep) {
       case 1:
-        return <Step1Personal {...stepProps} />;
+        return <Step0HandPhoto {...stepProps} />;
       case 2:
-        return <Step2Education {...stepProps} />;
+        return <Step1Personal {...stepProps} />;
       case 3:
-        return <Step3Family {...stepProps} />;
+        return <Step2Education {...stepProps} />;
       case 4:
-        return <Step5Goals {...stepProps} />;
+        return <Step3Family {...stepProps} />;
       case 5:
-        return <Step4Location {...stepProps} />;
+        return <Step4Goals {...stepProps} />;
       default:
         return null;
     }

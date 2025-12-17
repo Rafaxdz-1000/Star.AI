@@ -16,12 +16,12 @@ export interface Report {
   };
 }
 
-function calcularNumeroDestino(idade: number, cidade: string): number {
+function calcularNumeroDestino(idade: number, cidade?: string): number {
   const somaIdade = idade.toString().split('').reduce((acc, num) => acc + parseInt(num), 0);
-  const somaCidade = cidade.toLowerCase().split('').reduce((acc, char) => {
+  const somaCidade = cidade ? cidade.toLowerCase().split('').reduce((acc, char) => {
     const code = char.charCodeAt(0);
     return acc + (code >= 97 && code <= 122 ? code - 96 : 0);
-  }, 0);
+  }, 0) : 0;
   
   let total = somaIdade + somaCidade;
   while (total > 9 && total !== 11 && total !== 22 && total !== 33) {
@@ -31,14 +31,14 @@ function calcularNumeroDestino(idade: number, cidade: string): number {
   return total;
 }
 
-function gerarNumerosMegaSena(numeroDestino: number, idade: number, cidade: string): number[] {
+function gerarNumerosMegaSena(numeroDestino: number, idade: number, cidade?: string): number[] {
   const numeros: number[] = [];
   const base = numeroDestino;
   
   numeros.push(base);
   numeros.push((base * 3) % 60 + 1);
   numeros.push((idade + base) % 60 + 1);
-  numeros.push((cidade.length * base) % 60 + 1);
+  numeros.push(((cidade?.length || 0) * base) % 60 + 1);
   numeros.push((base * 7 + idade) % 60 + 1);
   numeros.push((base * 11) % 60 + 1);
   
@@ -98,14 +98,14 @@ export function generateReport(data: FormData): Report {
   const desafioTexto = formatarResposta(desafioAtual, desafioAtualOutro);
 
   const idadeCategoria = idade < 25 ? "jovem" : idade < 35 ? "adulto jovem" : idade < 50 ? "meia-idade" : "madura";
-  const localizacao = bairro ? `${bairro}, ${cidade}/${estado}` : `${cidade}/${estado}`;
+  const localizacao = cidade && estado ? (bairro ? `${bairro}, ${cidade}/${estado}` : `${cidade}/${estado}`) : "sua localização";
   
   const numeroDestino = calcularNumeroDestino(idade, cidade);
   const numerosMegaSena = gerarNumerosMegaSena(numeroDestino, idade, cidade);
   const significadoNumero = getSignificadoNumero(numeroDestino);
 
   return {
-    resumo: `Através da análise profunda das linhas da sua mão e da energia do seu perfil, vejo uma ${sexo === "feminino" ? "mulher" : "pessoa"} ${idadeCategoria} de ${idade} anos, residente em ${localizacao}. A energia vibracional da sua localização, especialmente em ${cidade}, influencia diretamente as marcações místicas observadas em sua palma.
+    resumo: `Através da análise profunda das linhas da sua mão e da energia do seu perfil, vejo uma ${sexo === "feminino" ? "mulher" : "pessoa"} ${idadeCategoria} de ${idade} anos${cidade ? `, residente em ${localizacao}` : ""}. ${cidade ? `A energia vibracional da sua localização, especialmente em ${cidade}, influencia diretamente as marcações místicas observadas em sua palma.` : "As marcações místicas observadas em sua palma revelam um perfil único e especial."}
 
 Sua atuação como ${profissao.toLowerCase()} está refletida na linha do destino de sua mão - ela mostra ${estudando ? "uma mente em constante expansão, característica visível no desenvolvimento progressivo da linha da cabeça" : "a maturidade profissional alcançada, evidente na firmeza e profundidade das linhas principais"}.
 
@@ -116,9 +116,9 @@ Seus objetivos relacionados a ${objetivoTexto} estão mapeados no monte de Júpi
 Os desafios atuais relacionados a ${desafioTexto} estão refletidos nas linhas de resistência. No entanto, a força do monte de Marte em sua palma mostra que você possui a resiliência necessária para superá-los. As marcações místicas indicam que a solução virá de dentro para fora.`,
 
     rituais: [
-      `Use ${estado === "BA" || estado === "PE" || estado === "CE" ? "branco e azul claro" : estado === "RS" || estado === "SC" || estado === "PR" ? "vermelho e dourado" : estado === "SP" || estado === "RJ" || estado === "MG" ? "branco e dourado" : "branco e prata"} na virada do ano - cores que ressoam especialmente com as energias vibratórias de ${estado}`,
+      `${estado ? `Use ${estado === "BA" || estado === "PE" || estado === "CE" ? "branco e azul claro" : estado === "RS" || estado === "SC" || estado === "PR" ? "vermelho e dourado" : estado === "SP" || estado === "RJ" || estado === "MG" ? "branco e dourado" : "branco e prata"} na virada do ano - cores que ressoam especialmente com as energias vibratórias de ${estado}` : "Use branco e dourado na virada do ano - cores que ressoam especialmente com energias de prosperidade e renovação"}`,
       `${filhos ? "Pule 7 ondas com seus filhos, uma tradição que fortalecerá os laços familiares e trará proteção para todo o núcleo" : "Pule 7 ondas de costas, visualizando cada onda lavando um obstáculo e trazendo uma bênção para 2026"}`,
-      `Leve uma romã na bolsa durante todo o mês de janeiro - em ${cidade}, esta fruta carrega uma energia especial de prosperidade`,
+      `${cidade ? `Leve uma romã na bolsa durante todo o mês de janeiro - em ${cidade}, esta fruta carrega uma energia especial de prosperidade` : "Leve uma romã na bolsa durante todo o mês de janeiro - esta fruta carrega uma energia especial de prosperidade"}`,
       "Na primeira lua cheia de 2026, escreva 3 desejos em papel amarelo e queime sob a luz lunar, guardando as cinzas em um saquinho vermelho",
       `${estudando ? "Coloque um cristal de quartzo transparente em seu local de estudos para amplificar concentração e absorção de conhecimento" : "Mantenha uma planta de dinheiro (Plectranthus) no ambiente de trabalho para atrair crescimento profissional e oportunidades"}`,
       `Acenda uma vela roxa toda quinta-feira às 19h durante janeiro, pedindo clareza para seus objetivos relacionados a ${objetivoTexto}`
@@ -129,7 +129,7 @@ Os desafios atuais relacionados a ${desafioTexto} estão refletidos nas linhas d
         `Evolução na área de ${areaTexto}: as linhas da sua mão indicam movimento significativo nesta área entre fevereiro e maio de 2026`,
         `Quanto aos seus objetivos relacionados a ${objetivoTexto}, os primeiros sinais concretos de manifestação aparecerão no primeiro trimestre, ganhando força no segundo semestre`,
         `${situacaoCivil === "solteira" ? "Conhecimento de pessoa significativa em contexto inesperado, possivelmente relacionado a " + areaTexto : "Fortalecimento do relacionamento atual através de uma renovação de compromisso ou decisão importante tomada em conjunto"}`,
-        `Superação gradual relacionada a ${desafioTexto} através de ajuda inesperada de alguém próximo em ${cidade}`,
+        `Superação gradual relacionada a ${desafioTexto} através de ajuda inesperada de alguém próximo${cidade ? ` em ${cidade}` : ""}`,
         `${estudando ? "Conclusão de etapa importante nos estudos com reconhecimento público ou acadêmico" : "Proposta profissional que valoriza sua experiência e pode significar aumento de até 30% em ganhos"}`
       ],
       
@@ -152,12 +152,12 @@ Os desafios atuais relacionados a ${desafioTexto} estão refletidos nas linhas d
     },
 
     insights: [
-      `A energia da sua localização em ${localizacao} é propícia para manifestações materiais - aproveite esta força telúrica`,
+      `${cidade ? `A energia da sua localização em ${localizacao} é propícia para manifestações materiais - aproveite esta força telúrica` : "A energia do seu perfil é propícia para manifestações materiais - aproveite esta força transformadora"}`,
       `${filhos ? "Seu papel como mãe é também seu poder místico - a maternidade é um portal de manifestação" : "Sua liberdade para focar em si mesma é um presente raro - use-a sabiamente"}`,
       `Os desafios relacionados a ${desafioTexto} não são bloqueios, mas sim portais de transformação`,
       `${estudando ? "O conhecimento que você busca é tanto intelectual quanto espiritual - permita que ambos se entrelacem" : "Sua experiência de vida é um tesouro - confie mais em sua sabedoria acumulada"}`,
       "As linhas da sua mão revelam que você tem proteção espiritual forte - confie em sua intuição",
-      `Em 2026, o alinhamento planetário favorecerá especialmente pessoas em ${cidade} - você está no lugar certo`
+      `${cidade ? `Em 2026, o alinhamento planetário favorecerá especialmente pessoas em ${cidade} - você está no lugar certo` : "Em 2026, o alinhamento planetário será especialmente favorável para você - confie no momento certo"}`
     ],
 
     numerologia: {

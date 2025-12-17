@@ -7,8 +7,8 @@ export interface FormData {
   situacaoCivil: string;
   filhos: boolean;
   quantidadeFilhos?: number;
-  estado: string;
-  cidade: string;
+  estado?: string;
+  cidade?: string;
   bairro?: string;
   fotoMao?: File;
   objetivoPrincipal?: string[];

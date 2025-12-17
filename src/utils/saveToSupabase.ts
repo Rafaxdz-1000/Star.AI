@@ -33,9 +33,9 @@ function mapFormDataToDatabase(formData: Partial<FormData>, email: string) {
     marital_status: maritalStatusMap[formData.situacaoCivil || ""] || "single",
     has_children: formData.filhos || false,
     children_quantity: formData.quantidadeFilhos || null,
-    state: formData.estado || "",
-    city: formData.cidade || "",
-    neighborhood: formData.bairro || null,
+    state: "", // Campo removido do formulário, mantido para compatibilidade
+    city: "", // Campo removido do formulário, mantido para compatibilidade
+    neighborhood: null, // Campo removido do formulário, mantido para compatibilidade
     hand_photo_url: "", // Será preenchido após upload da foto
     main_objective_other: formData.objetivoPrincipalOutro || null,
     area_to_improve_other: formData.areaMelhorarOutro || null,
