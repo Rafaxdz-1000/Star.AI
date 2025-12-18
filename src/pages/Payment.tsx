@@ -222,6 +222,19 @@ export default function Payment() {
         return;
       }
 
+      // Enviar evento para Google Tag Manager
+      if (typeof window !== 'undefined') {
+        const dataLayer = (window as any).dataLayer;
+        if (dataLayer) {
+          dataLayer.push({
+            event: 'checkout_initiated',
+            formDataId: result.formDataId,
+            email: email,
+            price: price,
+          });
+        }
+      }
+
       // Redirecionar para o checkout da Stripe
       // Quando o usuário completar ou cancelar, será redirecionado de volta
       // A verificação de pagamento será feita na página Result
